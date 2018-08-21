@@ -28,10 +28,14 @@ export class AlbumService {
 //
 // Because this.albums is a FirebaseListObservable<any[]>, as declared at the top of the file, it has many of the same properties and capabilities of any other list or array. We can simply call push() on it to add our new album to the list.
 
-  getAlbumById(albumId: number){
-
-
-
-  }
+getAlbumById(albumId: string){
+  return this.database.object('albums/' + albumId);
+}
+//
+// Notice albumId is now a string, not a number. Firebase keys are strings.
+//
+// Additionally, we're now calling this.database.object() instead of .list(). This is because we're requesting only a single object from Firebase, not an entire list.
+//
+// We're also including albumId as an argument to the object() method. This is because we need to tell Firebase where to look for our object. Remember, each database entry is located under its key. All entries are also nested in a larger albums table. Therefore we specify "albums/" as the location. This prompts Firebase to look in our Albums list, for the Album residing under whatever key we provide this method.
 
 }

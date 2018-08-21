@@ -1,22 +1,13 @@
-<!-- <h2>Marketplace</h2>
-
-<div *ngFor="let album of albums" (click)="goToDetailPage(album)" class="panel panel-default">
-  <div class="panel-body">
-    <h3><em>{{album.title}}</em> by {{album.artist}}</h3>
-  </div>
-</div> -->
-
 
 <h2>Marketplace</h2>
 
 <div *ngFor="let album of albums | async" (click)="goToDetailPage(album)" class="panel panel-default">
   <div class="panel-body">
     <h3><em>{{album.title}}</em> by {{album.artist}}</h3>
+    <h1>{{album.$key}}</h1>
   </div>
 </div>
 
-<!-- This lets Angular know that the data we are receiving there is asynchronous and we need to use a promise to wait for it to load. Firebase is fast but it'll still take time for our service to reach out to Firebase, request our data, and return it back into the component.
+<!-- firebase returns data to our application, like the list of Albums in our MarketplaceComponent it adds an extra property to each item. This property is called $key, and it contains the Firebase key that corresponds to that item's entry in the database. Let's check it out!
 
-While the service is communicating with Firebase, our component's template will load. However, it won't yet know what albums is, because the Service has not yet provided it.
-
-By adding the async pipe here, we're preemptively notifying Angular that albums is asynchronous and that it will likely come after the template attempts to load. Angular, in turn, doesn't immediately throw an error, and instead waits patiently for the albums information, which the Service eventually provides. -->
+We'll temporarily display the $key property of each Album right in our MarketplaceComponent template, just to see -->

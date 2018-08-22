@@ -1,16 +1,11 @@
+<div>
+  <h3>{{(albumToDisplay | async)?.title}}</h3>
+  <h4>{{(albumToDisplay | async)?.artist}}</h4>
+  <p>{{(albumToDisplay | async)?.description}}</p>
+</div>
 
-<h4>Edit Album</h4>
+<!-- You may notice that we are using a new operator, the ?. This operator is know as the existential operator or safe navigation operator. We use it when we are unsure of whether an object will be null or have value. By using it, we tell our program that when the object to the left of it is null, do not try to access the property on the right. If the object is not null, then try to access the property on the right. The existential operator is especially helpful when dealing with responses from API calls as often times the data contains null values in unpredictable places.
 
-<label>New Album Title:</label>
-<input [(ngModel)]="selectedAlbum.title">
-<br>
+An existential operator safeguards against undefined references. This is useful when dealing with asynchronous code. By including a ? between (albumToDisplay | async) and title, we instruct our browser to evaluate whether albumToDisplay is defined before attempting to retrieve the each property. Even though we apply the async pipe, we still need to use it here to make sure that our browser doesn't throw errors before the album is loaded. This is because the async pipe is being applied directly to the object and is not a part of an ngFor directive.
 
-<label>New Album Artist:</label>
-<input [(ngModel)]="selectedAlbum.artist">
-<br>
-
-<label>New Album Description:</label>
-<input [(ngModel)]="selectedAlbum.description">
-
-
-<!-- Here, we use two-way data binding to update properties of an Album called selectedAlbum. -->
+We used this same pipe in our MarketplaceComponent to instruct Angular to wait for Firebase to return our list of Albums. -->

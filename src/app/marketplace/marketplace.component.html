@@ -1,8 +1,8 @@
 <h2>Marketplace</h2>
 
-<div *ngFor="let album of albums | async" (click)="goToDetailPage(album)" class="panel panel-default">
+<div *ngFor="let album of albums | async"  class="panel panel-default">
   <div class="panel-body">
-    <h3><em>{{album.title}}</em> by {{album.artist}}</h3>
+    <h3 (click)="goToDetailPage(album)"><em>{{album.title}}</em> by {{album.artist}}</h3>
     <div *ngIf="currentRoute === '/admin'">
       {{album.description}}
       <hr>
@@ -10,7 +10,3 @@
     </div>
   </div>
 </div>
-
-<!-- We add [selectedAlbum]="album" to the existing <app-edit-album></app-edit-album> tags. This tells MarketplaceComponent to pass the current album from the directive loop to the EditAlbumComponent's @Input field named selectedAlbum.
-
-We should now see an edit form next to each Album on the localhost:4200/admin route: -->

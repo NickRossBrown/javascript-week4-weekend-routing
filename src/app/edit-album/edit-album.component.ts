@@ -1,22 +1,37 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Album } from '../album.model';
+import { AlbumService } from '../album.service';
 
 @Component({
   selector: 'app-edit-album',
   templateUrl: './edit-album.component.html',
-  styleUrls: ['./edit-album.component.css']
+  styleUrls: ['./edit-album.component.css'],
+  providers: [AlbumService]
 })
 
 
 export class EditAlbumComponent implements OnInit {
   @Input() selectedAlbum;
-//   EditAlbumComponent doesn't yet know what selectedAlbum is. Remember "Data down, actions up"? We need to pass this data down from the parent MarketplaceComponent into the child EditAlbumComponent.
-//
-// To do this, EditAlbumComponent needs an @Input to accept data from its parent. We'll import Input from Angular core, and define an @Input named selectedAlbum:
 
-  constructor() { }
+  constructor(private albumService: AlbumService) { }
 
   ngOnInit() {
   }
 
+  beginUpdatingAlbum(albumToUpdate){
+    this.albumService.updateAlbum(albumToUpdate);
+  }
+  //--beginUpdatingAlbum() is triggered when the "Update" button registers a click event. It calls the AlbumService's updateAlbum() method, passing in the locally-updated Album.
+  //
+  //--As we discussed, updateAlbum() then locates and updates the Album's Firebase entry.
+
 }
+
+// The code above injects the AlbumService into the EditAlbumComponent by completing the following steps, as detailed in the Services lesson earlier this week:
+//
+// Imports the AlbumService at the top of the file.
+//
+// Adds a providers property to the component's annotation.
+//
+// Registers AlbumService in the providers array.
+//
+// Declares a new instance of AlbumService in the constructor.

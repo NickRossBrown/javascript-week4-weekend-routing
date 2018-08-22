@@ -11,4 +11,9 @@
 <label>New Album Description:</label>
 <input [(ngModel)]="selectedAlbum.description">
 
+<hr>
 <button (click)="beginUpdatingAlbum(selectedAlbum)">Update</button>
+<hr>
+<button (click)="beginDeletingAlbum(selectedAlbum)">Delete</button>
+
+<!-- This button includes an event binding that triggers a beginDeletingAlbum() method when clicked, passing in the selectedAlbum. -->

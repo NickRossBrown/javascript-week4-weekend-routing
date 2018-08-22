@@ -6,10 +6,11 @@
     <div *ngIf="currentRoute === '/admin'">
       {{album.description}}
       <hr>
-      <app-edit-album></app-edit-album>
+      <app-edit-album [selectedAlbum]="album"></app-edit-album>
     </div>
   </div>
 </div>
 
+<!-- We add [selectedAlbum]="album" to the existing <app-edit-album></app-edit-album> tags. This tells MarketplaceComponent to pass the current album from the directive loop to the EditAlbumComponent's @Input field named selectedAlbum.
 
-<!-- place an *ngIf directive in the MarketplaceComponent template. This directive will only render the EditAlbumComponent and display the Album's description if the user is located on the Admin route: -->
+We should now see an edit form next to each Album on the localhost:4200/admin route: -->

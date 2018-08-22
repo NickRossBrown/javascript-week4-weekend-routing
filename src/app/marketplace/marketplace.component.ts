@@ -21,7 +21,6 @@ export class MarketplaceComponent implements OnInit {
 
   ngOnInit(){
     this.albums = this.albumService.getAlbums();
-    console.log(this.router.url);
   }
 
   goToDetailPage(clickedAlbum) {
